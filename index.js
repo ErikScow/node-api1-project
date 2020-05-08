@@ -51,6 +51,23 @@ server.delete('/api/users/:id', (req, res) => {
     }
 })
 
+server.put('/api/users/:id', (req, res) => {
+    const { id } = req.params
+    const userToUpdate = users.findIndex( user => user.id === id)
+    
+    let updatedUser = req.body
+
+    if ((userToUpdate !== -1) && updatedUser.name && updatedUser.bio) {
+        users[userToUpdate] = updatedUser
+        users[userToUpdate].id = shortid.generate()
+        res.status(200).json(users[userToUpdate])
+    } else if (!userToUpdate) {
+        res.status(404).json({ message: "The user with the specified ID does not exist." })
+    } else if (!updatedUser.name || !updatedUser.bio) {
+        res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
+    }
+})
+
 const PORT = 5000
 
 server.listen(PORT, () => {
