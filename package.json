@@ -4,6 +4,8 @@
   "description": "## Topics",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "gitignore": "^0.6.0",
     "shortid": "^2.2.15"
@@ -12,7 +14,8 @@
     "nodemon": "^2.0.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
